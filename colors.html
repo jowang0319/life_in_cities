@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>cultural life in cities</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css">
+
+    <!-- Demo styles -->
+    <style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 600px;
+        padding-left: 200px;
+        position: relative;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 2;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+
+    div #d3-tip{
+        z-index: 99;
+    }
+
+    button{
+        float:right;
+    }
+
+    #graphic {
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        left: 0;
+    }
+
+    #graphic svg {
+        background: #f1f1f1;
+    }
+
+    #Antarctica{
+        display:none;
+    }
+    </style>
+</head>
+<body>
+    <!-- Swiper -->
+    <div id="graphic"></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" id="slide-1">Slide 1</div>
+            <div class="swiper-slide" id="slide-2">Slide 2</div>
+            <div class="swiper-slide" id="slide-3">Slide 3
+                <br>
+                <button id='theaters'>theaters</button>
+                <br>
+                <button id='art_galleries'>art galleries</button>
+                <br>
+                <button id='michelin_rest'>michelin restaurants</button>
+                <br>
+                <button id='inter_student'>international students</button>
+                <br>
+                <button id='bar'>bars</button>
+                <br>
+                <button id='inter_tourists'>international tourists</button>
+                <br>
+                <button id='cinAd_perc'>cinema admission per capita</button>
+                <br>
+                <button id='club_disco'>clubs and discos</button>
+                <br>
+                <button id='bookshop'>book shops</button>
+                <br>
+                <button id='green'>green area percentage</button>
+                <br>
+                <button id='cinema'>cinemas</button>
+                <br>
+                <button id='film_fes'>film festivals</button>
+                <br>
+                <button id='foreign_born'>foreign born percentage</button>
+                <br>
+                <button id='concer_hall'>concert halls</button>
+
+
+            </div>
+            <div class="swiper-slide" id="slide-4">
+
+                <div>Slide 4</div>
+
+                <div>
+                    <h4 id = 'city_title'>City</h4>
+                    <p>content</p>
+                </div>
+
+
+            </div>
+            <div class="swiper-slide" id="slide-5">Slide 5</div>
+            <div class="swiper-slide" id="slide-6">Slide 6</div>
+            <div class="swiper-slide" id="slide-7">Slide 7</div>
+            <div class="swiper-slide" id="slide-8">Slide 8</div>
+            <div class="swiper-slide" id="slide-9">Slide 9</div>
+            <div class="swiper-slide" id="slide-10">Slide 10</div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+
+    // If we've moved to a new slide, fire to 'slideto' event
+    // If we've left a slide, fire the 'slidefrom' event
+    var currentSlide, lastSlide;
+
+    var slideInEvent = new Event('slidein'),
+        slideOutEvent = new Event('slideout');
+
+    function testSlideChange(swiper, progress) {
+        currentSlide = swiper.slides[swiper.activeIndex];
+        if(currentSlide && (currentSlide != lastSlide)) {
+            currentSlide.dispatchEvent(slideInEvent);
+            if(lastSlide) lastSlide.dispatchEvent(slideOutEvent);
+        }
+        lastSlide = currentSlide;
+    }
+
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        onProgress: testSlideChange,
+        direction: 'vertical',
+        freeMode: true,
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 30,
+        mousewheelControl: true
+    });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+
+    <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
+
+    <script src="graph.js"></script>
+
+</body>
+</html>
