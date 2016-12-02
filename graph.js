@@ -293,6 +293,9 @@
             .duration(1000)
             .attr('display','none')
 
+        simulation.nodes(datapoints)
+            .on('tick', null)
+
       })
 
 
@@ -356,6 +359,9 @@
           .duration(1000)
           .attr('display','inline')
           .attr('opacity',1)
+
+        simulation.nodes(datapoints)
+            .on('tick', null)
 
       })
 
