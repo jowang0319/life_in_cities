@@ -5,8 +5,11 @@
     <title>cultural life in cities</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700|Source+Sans+Pro" rel="stylesheet">
 
     <!-- Demo styles -->
     <style>
@@ -22,8 +25,9 @@
         padding: 0;
     }
     .swiper-container {
-        width: 600px;
-        padding-left: 200px;
+        width: 20%;
+        padding-rigth: 0%;
+        float:right;
         position: relative;
         height: 100%;
         margin-left: auto;
@@ -49,9 +53,7 @@
         align-items: center;
     }
 
-    div #d3-tip{
-        z-index: 99;
-    }
+    .d3-tip { z-index: 100; }
 
     button{
         float:right;
@@ -61,7 +63,8 @@
         position: absolute;
         top: 0;
         z-index: 2;
-        left: 0;
+        left: 20%;
+
     }
 
     #graphic svg {
@@ -71,11 +74,93 @@
     #Antarctica{
         display:none;
     }
+
+    #graphic{
+        width:800px;
+    }
+
+    h1#title{
+        font-family: 'Lobster Two', cursive;
+        font-size: 7vh;
+        text-align: center;
+        margin-top:35%;
+    }
+
+    p#source{
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 2vh;
+        text-align: center;
+        margin-top: -4%;
+    }
+
+    p#intro{
+        display:none;
+    }
+
+    p#bar_text{
+        display:none;
+    }
+
+    p#circle_text{
+        display:none;
+    }
+
+    img#start_img{
+        width:100%;
+        z-index: 99;
+        bottom: 0%;
+        position:absolute;
+    }
+
+    div#cover{
+        width:100%;
+        z-index: 100;
+        bottom: 0%;
+        position:absolute;
+        height:300px;
+        background-color: white;
+    }
+
+
     </style>
 </head>
 <body>
     <!-- Swiper -->
-    <div id="graphic"></div>
+    <img id='start_img' src='city.png'>
+    <div id='cover'></div>
+
+    <script>
+        $('document').ready(function(){
+            $('#cover').animate({"left":"2000px"},5000)
+        })
+    </script>
+
+
+    <div id="graphic">
+        <h1 id='title'>CITIES AND CULTURE</h1>
+
+        <p id='source'>Author <a href='http://zhizhouwang.me'>Zhizhou Wang </a>| Data <a href = 'http://www.worldcitiescultureforum.com/'>World cities culture forum </a></p>
+
+        <p id = 'intro'>Culture, the complex whole which includes knowledge, belief, art, morals, law, custom and any other capabilities and habits acquired by man as a member of society, serves as the spirit of human existance.
+        </br>
+        Groups of people generate the culture of a city, and then the culture itself becomes a kind of symbol that different that city from others.
+        </br>
+        From Tokyo to New York, large cities is the house for millions of people from different background, countries, and history. The world cities culture forum collected data of 33 cities around the world and the cultural life within those cities, allowing us to understand better about those large cities in a distinct perspect.
+        </br>
+        Let's have a look of the data and see Which city is best for you?
+        </p>
+
+        <p id='bar_text'>
+            The research collected the data of the cultural life in large cities, including infrastructures such as restaurants, cinemas, clubs, as well as welcomeness of international students and percentage of foreign born.
+            Click on the button bellow to see the comparison between cities in corresponding area. 
+        </p>
+
+        <p id='circle_text'>
+            Population varies as well in these large cities, hover on the circles below to explore the city in detail.
+        </p>
+
+
+    </div>
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide" id="slide-1">Slide 1</div>
@@ -112,23 +197,9 @@
 
 
             </div>
-            <div class="swiper-slide" id="slide-4">
-
-                <div>Slide 4</div>
-
-                <div>
-                    <h4 id = 'city_title'>City</h4>
-                    <p>content</p>
-                </div>
-
-
-            </div>
+            <div class="swiper-slide" id="slide-4">Slide 4</div>
             <div class="swiper-slide" id="slide-5">Slide 5</div>
-            <div class="swiper-slide" id="slide-6">Slide 6</div>
-            <div class="swiper-slide" id="slide-7">Slide 7</div>
-            <div class="swiper-slide" id="slide-8">Slide 8</div>
-            <div class="swiper-slide" id="slide-9">Slide 9</div>
-            <div class="swiper-slide" id="slide-10">Slide 10</div>
+
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
@@ -166,6 +237,8 @@
         spaceBetween: 30,
         mousewheelControl: true
     });
+
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
@@ -173,6 +246,7 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+
 
     <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
 

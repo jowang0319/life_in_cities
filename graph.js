@@ -1,5 +1,5 @@
 (function() {
-    var margin = { top: 100, left: 50, right: 50, bottom: 50},
+    var margin = { top: 10, left: 50, right: 50, bottom: 50},
     height = 800 - margin.top - margin.bottom,
     width = 800 - margin.left - margin.right;
 
@@ -17,7 +17,7 @@
     .range([0,width-100]);
 
   var yPositionScale = d3.scaleBand()
-    .range([height-margin.top,margin.bottom])
+    .range([height-100,margin.bottom])
     .padding(0.2);
 
   var tip = d3.tip()
@@ -25,7 +25,7 @@
     .offset([-10, 0])
     .html(function(d) {
       console.log(d)
-      return "<span style='color:black'>" + d.City + "</span>";
+      return "<span style='color:white'>" + d.City + "</span>";
     })
 
   svg.call(tip);
@@ -191,6 +191,7 @@
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
 
+
     worldmap.attr('display',"none")
     cities.attr('display',"none")
 
@@ -200,7 +201,7 @@
       .attr("class", "city-name")
       .attr('x',0)
       .attr('y',function(d){
-        console.log(yPositionScale(d.City))
+        // console.log(yPositionScale(d.City))
         return yPositionScale(d.City)
       })
       .text(function(d){
@@ -210,6 +211,26 @@
       .attr('dy',"0.75em")
       .attr('display','none')
       .attr('opacity',0)
+
+    var circle_name = svg.selectAll(".circle-name")
+      .data(datapoints)
+      .enter().append("text")
+      .attr("class", "city-name")
+      .attr('x',0)
+      .attr('y',function(d){
+        // console.log(yPositionScale(d.City))
+        return yPositionScale(d.City)
+      })
+      .text(function(d){
+        if (radiusScale(d.population) > 50){
+          return d.City
+        }
+      })
+      .attr('display','none')
+      .attr('opacity','0')
+      .attr('text-anchor','middle')
+
+
 
 
 
@@ -232,6 +253,22 @@
           .transition()
             .attr('display','none')
 
+        d3.select('h1#title')
+          .style('display','block')
+          .style('opacity',1)
+
+        d3.select('p#source')
+          .style('display','block')
+          .style('opacity',1)
+
+        d3.select('p#intro')
+          .style('display','none')
+          .style('opacity',0)
+
+        d3.select('img#start_img')
+          .style('display','block')
+          .style('opacity',1)
+
       })
 
     d3.select('#slide-2')
@@ -243,6 +280,26 @@
           .attr('opacity',1)
         console.log('map')
 
+        d3.select('h1#title')
+          .style('display','none')
+          .style('opacity',0)
+
+        d3.select('p#source')
+          .style('display','none')
+          .style('opacity',0)
+
+        d3.select('p#intro')
+          .style('display','block')
+          .style('opacity',1)
+
+        d3.select('p#bar_text')
+          .style('display','none')
+          .style('opacity',0)
+
+        d3.select('img#start_img')
+          .style('display','none')
+          .style('opacity',0)
+
         // simulation.nodes(datapoints)
         //   .on('tick', function(d){
         //     return null
@@ -250,22 +307,96 @@
 
         cities
           .transition()
-          .duration(2000)
-          .attr('display','inline')
-          .attr('opacity',1)
-          .attr("cx", function(d) {
-            // Taking our longitude and latitude columns
-            // converting them into pixel coordinates 
-            // on our screen
-            // and returning the first one (the x)
-            var coords = projection([d.longitude, d.latitude])
-            return coords[0]
-          })
-          .attr("cy", function(d) {
-            var coords = projection([d.longitude, d.latitude])
-            return coords[1]
-          })
-          .attr('r',4)
+            .duration(2000)
+            .attr('fill','#FBE251')
+            .attr('stroke','wthie')
+            .attr('display','inline')
+            .attr('opacity',1)
+            .attr("cx", function(d) {
+              // Taking our longitude and latitude columns
+              // converting them into pixel coordinates 
+              // on our screen
+              // and returning the first one (the x)
+              var coords = projection([d.longitude, d.latitude])
+              return coords[0]
+            })
+            .attr("cy", function(d) {
+              var coords = projection([d.longitude, d.latitude])
+              return coords[1]
+            })
+            .attr('r',4)
+          .transition()
+            .delay(0)
+            .duration(2000)
+            .attr('fill','rgb(255,177,24)')
+            .attr('opacity',0)
+            .attr('r',10)
+          .transition()
+            .delay(0)
+            .duration(1)
+            .attr('fill','#FBE251')
+            .attr('opacity',1)
+            .attr('r',4)
+          .transition()
+            .delay(500)
+            .duration(2000)
+            .attr('fill','rgb(255,177,24)')
+            .attr('opacity',0)
+            .attr('r',10)
+          .transition()
+            .delay(0)
+            .duration(1)
+            .attr('fill','#FBE251')
+            .attr('opacity',1)
+            .attr('r',4)
+          .transition()
+            .delay(500)
+            .duration(2000)
+            .attr('fill','rgb(255,177,24)')
+            .attr('opacity',0)
+            .attr('r',10)
+          .transition()
+            .delay(0)
+            .duration(1)
+            .attr('fill','#FBE251')
+            .attr('opacity',1)
+            .attr('r',4)
+          .transition()
+            .delay(500)
+            .duration(2000)
+            .attr('fill','rgb(255,177,24)')
+            .attr('opacity',0)
+            .attr('r',10)
+          .transition()
+            .delay(0)
+            .duration(1)
+            .attr('fill','#FBE251')
+            .attr('opacity',1)
+            .attr('r',4)
+          .transition()
+            .delay(500)
+            .duration(2000)
+            .attr('fill','rgb(255,177,24)')
+            .attr('opacity',0)
+            .attr('r',10)
+          .transition()
+            .delay(0)
+            .duration(1)
+            .attr('fill','#FBE251')
+            .attr('opacity',1)
+            .attr('r',4)
+          .transition()
+            .delay(500)
+            .duration(2000)
+            .attr('fill','rgb(255,177,24)')
+            .attr('opacity',0)
+            .attr('r',10)
+          .transition()
+            .delay(0)
+            .duration(1)
+            .attr('fill','#FBE251')
+            .attr('opacity',1)
+            .attr('r',4)
 
         city_name
           .transition()
@@ -296,6 +427,7 @@
         simulation.nodes(datapoints)
             .on('tick', null)
 
+
       })
 
 
@@ -309,6 +441,18 @@
             .attr('opacity',0)
           .transition()
             .attr('display','none')
+
+        d3.select('p#intro')
+          .style('display','none')
+          .style('opacity',0)
+
+        d3.select('p#bar_text')
+          .style('display','block')
+          .style('opacity',1)
+
+        d3.select('p#circle_text')
+          .style('display','none')
+          .style('opacity',0)
 
         // simulation.nodes(datapoints)
         //   .on('tick', function(d){
@@ -360,14 +504,33 @@
           .attr('display','inline')
           .attr('opacity',1)
 
+        circle_name
+            .transition()
+              .duration(1000)
+              .attr('opacity',0)
+            .transition()
+              .duration(1000)
+              .attr('display',"inline")
+
         simulation.nodes(datapoints)
             .on('tick', null)
+
+
 
       })
 
       d3.select('#slide-4')
         .on('slidein',function(){
           console.log('cities')
+
+          d3.select('p#bar_text')
+            .style('display','none')
+            .style('opacity',0)
+
+          d3.select('p#circle_text')
+            .style('display','inline')
+            .style('opacity',1)
+
 
           city_name
             .transition()
@@ -404,10 +567,17 @@
             .attr('opacity',1)
             .attr('display',"inline")
 
+
           simulation.nodes(datapoints)
             .on('tick', ticked)
 
 
+      })
+
+      d3.select('#slide-5')
+        .on('slidein',function(){
+
+          
       })
 
       // d3.select('#slide-10')
@@ -474,7 +644,20 @@
             .attr("cx", function(d) { 
               return d.x; })
             .attr("cy", function(d) { return d.y; });
+
+        circle_name
+            .transition()
+            .delay(1)
+            .attr('display','inline')
+            .attr('opacity','1')
+            .attr("x", function(d) { 
+              return d.x; })
+            .attr("y", function(d) { return d.y; })
+            .attr('dy','0.35em');
+
       }
+
+
 
 
 
