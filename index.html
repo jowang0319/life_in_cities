@@ -56,20 +56,20 @@
     .d3-tip { z-index: 100; }
 
     button{
-        float:right;
+        
     }
 
     #graphic {
         position: absolute;
         top: 0;
         z-index: 2;
-        left: 20%;
+        left: 22%;
 
     }
 
-    #graphic svg {
+/*    #graphic svg {
         background: #f1f1f1;
-    }
+    }*/
 
     #Antarctica{
         display:none;
@@ -121,6 +121,18 @@
         background-color: white;
     }
 
+    div#city_detail{
+        width:800px;
+        position: absolute;
+        top: 1300px;
+        z-index: 2;
+        left: 22%;
+    }
+
+    p#buttons{
+        display:none;
+    }
+
 
     </style>
 </head>
@@ -159,50 +171,136 @@
             Population varies as well in these large cities, hover on the circles below to explore the city in detail.
         </p>
 
+        <p id='buttons'>
+
+            Leisure Time
+            <button id='theaters'>theaters</button>
+            <button id='art_galleries'>art galleries</button>
+            <button id='concer_hall'>concert halls</button>
+            <button id='bookshop'>book shops</button>
+            <button id='cinema'>cinemas</button>
+            <br>
+
+            Nightlife
+            <button id='bar'>bars</button>
+            <button id='club_disco'>clubs and discos</button>
+            <button id='michelin_rest'>michelin restaurants</button>
+            <br>
+            
+            Interests
+            <button id='cinAd_perc'>cinema admission per capita</button>
+            <button id='film_fes'>film festivals</button>
+            <button id='dance_performance'>dance performance</button>
+            <br>
+
+            Global
+            <button id='inter_student'>international students</button>
+            <button id='foreign_born'>foreign born percentage</button>
+            <button id='inter_tourists'>international tourists per year</button>
+                
+            
+
+        </p>
 
     </div>
+
+
+
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide" id="slide-1">Slide 1</div>
             <div class="swiper-slide" id="slide-2">Slide 2</div>
             <div class="swiper-slide" id="slide-3">Slide 3
-                <br>
-                <button id='theaters'>theaters</button>
-                <br>
-                <button id='art_galleries'>art galleries</button>
-                <br>
-                <button id='michelin_rest'>michelin restaurants</button>
-                <br>
-                <button id='inter_student'>international students</button>
-                <br>
-                <button id='bar'>bars</button>
-                <br>
-                <button id='inter_tourists'>international tourists</button>
-                <br>
-                <button id='cinAd_perc'>cinema admission per capita</button>
-                <br>
-                <button id='club_disco'>clubs and discos</button>
-                <br>
-                <button id='bookshop'>book shops</button>
-                <br>
-                <button id='green'>green area percentage</button>
-                <br>
-                <button id='cinema'>cinemas</button>
-                <br>
-                <button id='film_fes'>film festivals</button>
-                <br>
-                <button id='foreign_born'>foreign born percentage</button>
-                <br>
-                <button id='concer_hall'>concert halls</button>
-
 
             </div>
             <div class="swiper-slide" id="slide-4">Slide 4</div>
-            <div class="swiper-slide" id="slide-5">Slide 5</div>
+
 
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
+        
+    </div>
+
+    <div id='city_detail'>
+        <h2 class='selected_name'>Select a circle above and slide down to explore more details</h2>
+        <p>Area size: <span class='area_size'></span> sq/km
+            </br>
+            population: <span class='population'></span>
+                        </br>
+            GDP: $<span class='gdp'></span> million
+        </p>
+
+        <h4>Infrastructure</h4>
+        <p>
+            Green area percentage: <span class='green'></span>
+            </br>
+            markets: <span class='mk'></span> 
+            </br>
+            world heritage: <span class='wh'></span> 
+            </br>
+            historical sites: <span class='oh'></span> 
+            </br>
+            national museums: <span class='nm'></span> 
+        </p>
+
+        <h4>Entertaining</h4>
+        <p>
+            art galleries: <span class='ag'></span> 
+            </br>
+            bookshops: <span class='bs'></span> 
+            </br>
+            cinemas: <span class='cinema'></span> 
+            </br>
+            concert halls: <span class='ch'></span> 
+            </br>
+            club & discos: <span class='cd'></span> 
+            </br>
+            bars: <span class='bar'></span> 
+            </br>
+            restaurants: <span class='rest'></span> | michelin restaurants: <span class='m_rest'></span> 
+            </br>
+            theaters: <span class='theater'></span> 
+        </p>
+
+        <h4>Globalization</h4>
+        <p>
+            foreign born percentage: <span class='fb'></span> 
+            </br>
+            international tourists per year: <span class='it'></span> 
+            </br>
+            international students: <span class='is'></span> 
+        </p>
+
+        <h4>Celebration and festivals</h4>
+        <p>
+            film festival: <span class='ff'></span> 
+            </br>
+            film celebration: <span class='fc'></span> 
+            </br>
+            theatrical performance: <span class='tp'></span> 
+            </br>
+            dance performance: <span class='dp'></span> 
+        </p>
+
+        <h4>Others</h4>
+        <p>
+            population in city percentage: <span class='pic'></span> %
+            </br>
+            income per capita: $<span class='ipc'></span> 
+            </br>
+            visit of art exhibition: <span class='vae'></span> 
+            </br>
+            education level(with degree level or higher) percentage: <span class='edu'></span> 
+            </br>
+            cinema ticket per capita: $<span class='ctpc'></span> 
+            </br>
+            attendance of carnival: <span class='aoc'></span> 
+
+        </p>
+
+
+
     </div>
 
     <!-- Swiper JS -->
@@ -251,6 +349,8 @@
     <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
 
     <script src="graph.js"></script>
+
+
 
 </body>
 </html>

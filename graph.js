@@ -1,5 +1,5 @@
 (function() {
-    var margin = { top: 10, left: 50, right: 50, bottom: 50},
+    var margin = { top: 10, left: 50, right: 80, bottom: 50},
     height = 800 - margin.top - margin.bottom,
     width = 800 - margin.left - margin.right;
 
@@ -24,7 +24,7 @@
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function(d) {
-      console.log(d)
+      // console.log(d)
       return "<span style='color:white'>" + d.City + "</span>";
     })
 
@@ -89,6 +89,7 @@
       d.film_fes = +d.film_fes
       d.foreign_born = +d.foreign_born
       d.concer_hall = +d.concer_hall
+      d.dance_performance=+d.dance_performance
       return d
     })
     .await(ready) 
@@ -108,7 +109,7 @@
       return d.population
     })
 
-
+    var city_selected = "Shanghai"
 
     yPositionScale.domain(datapoints.map(function(d){ return d.City; }))
 
@@ -145,10 +146,6 @@
 
     var country = topojson.feature(jsondata, jsondata.objects.countries).features;
 
-    // Listen for slidein events and slideout events
-    d3.selectAll('.swiper-slide').on('slidein',function(){
-      console.log('Just slid in of ' + this.id)
-    })
 
     var worldmap = svg.selectAll(".country")
         .data(country)
@@ -232,8 +229,6 @@
 
 
 
-
-
     console.log(datapoints)
 
     d3.select('#slide-1')
@@ -297,6 +292,10 @@
           .style('opacity',0)
 
         d3.select('img#start_img')
+          .style('display','none')
+          .style('opacity',0)
+
+        d3.select('p#buttons')
           .style('display','none')
           .style('opacity',0)
 
@@ -512,9 +511,12 @@
               .duration(1000)
               .attr('display',"inline")
 
+        d3.select('p#buttons')
+          .style('display','block')
+          .style('opacity',1)
+
         simulation.nodes(datapoints)
             .on('tick', null)
-
 
 
       })
@@ -531,6 +533,9 @@
             .style('display','inline')
             .style('opacity',1)
 
+        d3.select('p#buttons')
+          .style('display','none')
+          .style('opacity',0)
 
           city_name
             .transition()
@@ -567,6 +572,143 @@
             .attr('opacity',1)
             .attr('display',"inline")
 
+          cities
+            .on('click',function(d){
+              console.log(d)
+              
+              d3.select('h2.selected_name')
+                .transition()
+                .text(d.City)
+
+              d3.select('span.area_size')
+                .transition()
+                .text(d.area_size)
+
+              formatValue = d3.format(".2s");
+              var population = formatValue(d.population).replace('M', ' million').replace('k', ' thousand');
+              console.log(population)
+              d3.select('span.population')
+                .transition()
+                .text(population)
+
+              var green = d3.format(".2%")(d.green)
+              d3.select('span.green')
+                .transition()
+                .text(green)
+
+              d3.select('span.mk')
+                .transition()
+                .text(d.markets)
+
+              d3.select('span.wh')
+                .transition()
+                .text(d.world_heritage)
+
+              d3.select('span.oh')
+                .transition()
+                .text(d.other_heritage_hist_sites)
+
+              d3.select('span.nm')
+                .transition()
+                .text(d.national_museum)
+
+              d3.select('span.ag')
+                .transition()
+                .text(d.art_galleries)
+
+              d3.select('span.bs')
+                .transition()
+                .text(d.bookshop)
+
+              d3.select('span.cinema')
+                .transition()
+                .text(d.cinema)
+
+              d3.select('span.ch')
+                .transition()
+                .text(d.concer_hall)
+
+              d3.select('span.cd')
+                .transition()
+                .text(d.club_disco)
+
+              d3.select('span.bar')
+                .transition()
+                .text(d.bar)
+
+              d3.select('span.rest')
+                .transition()
+                .text(d.restaurants)
+
+              d3.select('span.m_rest')
+                .transition()
+                .text(d.michelin_rest)
+
+              d3.select('span.theater')
+                .transition()
+                .text(d.theaters)
+
+              var fb = d3.format(".2%")(d.foreign_born) 
+              d3.select('span.fb')
+                .transition()
+                .text(fb)
+
+              var it = d3.format(",")(d.inter_student)
+              d3.select('span.it')
+                .transition()
+                .text(it)
+
+              d3.select('span.is')
+                .transition()
+                .text(d.theaters)
+
+              d3.select('span.ff')
+                .transition()
+                .text(d.film_fes)
+
+              d3.select('span.fc')
+                .transition()
+                .text(d.fes_cel)
+
+              d3.select('span.tp')
+                .transition()
+                .text(d.theatrical_performance)
+
+              d3.select('span.dp')
+                .transition()
+                .text(d.dance_performance)
+
+              d3.select('span.pic')
+                .transition()
+                .text(d.pop_in_city_per)
+  
+              d3.select('span.ipc')
+                .transition()
+                .text(d.income_percap)
+
+              d3.select('span.gdp')
+                .transition()
+                .text(d.gdp)
+
+              d3.select('span.vae')
+                .transition()
+                .text(d.visit_artexh)
+
+              var edu = d3.format(".2%")(d.edu_level)
+              d3.select('span.edu')
+                .transition()
+                .text(edu)
+
+              d3.select('span.ctpc')
+                .transition()
+                .text(d.cinema_tic_percap)
+
+              var aoc = d3.format(".2%")(d.att_carnival)
+              d3.select('span.aoc')
+                .transition()
+                .text(aoc)
+            })
+
 
           simulation.nodes(datapoints)
             .on('tick', ticked)
@@ -574,39 +716,33 @@
 
       })
 
-      d3.select('#slide-5')
-        .on('slidein',function(){
 
-          
-      })
-
-      // d3.select('#slide-10')
+      // d3.select('#slide-5')
       //   .on('slidein',function(){
-      //     worldmap
+
+      //     console.log('slide in city detail')
+
+      //     simulation.nodes(datapoints)
+      //       .on('tick', null)
+
+      //     circle_name
       //       .transition()
-      //       .duration(1000)
-      //       .attr('display','none')
-      //       .attr('opacity',0)
-      //     console.log('bubbles')
+      //         .attr('display','none')
 
       //     cities
       //       .transition()
-      //       .duration(1000)
-      //       .attr("r", function(d) {
-      //         return radiusScale(d.population)
-      //       })
-      //       .attr('opacity',1)
+      //         .duration(2000)
+      //         .attr('opacity',0.2)
+      //         .attr('cx',100)
+      //         .attr('cy',100)
 
-      //     simulation.nodes(datapoints)
-      //       .on('tick', ticked)
 
-      //     city_name
-      //       .transition()
-      //       .duration(1000)
-      //       .attr('display','none')
-      //       .attr('opacity',0)
 
-      //   })
+
+          
+      // })
+
+
 
 
       d3.selectAll('button')
@@ -617,6 +753,11 @@
 
           console.log(selected)
 
+          var sorted = datapoints.sort(function
+            (a, b) { return a[selected] - b[selected] }).map( 
+            function(d) { return d.City })
+
+
           selectExt = d3.extent(datapoints,function(d){
             return d[selected]
           })
@@ -625,17 +766,28 @@
 
           xPositionScale.domain(selectExt)
 
+          yPositionScale.domain(sorted)
+
           city_bars
             .transition()
             .duration(1000)
             .attr("width", function(d){
               return xPositionScale(d[selected])
             })
+            .attr("y", function(d) { 
+              return yPositionScale(d.City); 
+            })
+
+          city_name
+            .transition()
+            .duration(1000)
+            .attr("y", function(d) { 
+              return yPositionScale(d.City); 
+            })
+
 
 
         })
-
-
 
       function ticked() {
         cities
@@ -656,10 +808,6 @@
             .attr('dy','0.35em');
 
       }
-
-
-
-
 
 
 
