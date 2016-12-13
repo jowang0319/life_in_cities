@@ -1,6 +1,6 @@
 (function() {
-    var margin = { top: 10, left: 50, right: 80, bottom: 50},
-    height = 800 - margin.top - margin.bottom,
+    var margin = { top: 0, left: 50, right: 80, bottom: 50},
+    height = 700 - margin.top - margin.bottom,
     width = 800 - margin.left - margin.right;
 
   // What is this???
@@ -17,7 +17,7 @@
     .range([0,width-100]);
 
   var yPositionScale = d3.scaleBand()
-    .range([height-100,margin.bottom])
+    .range([height-200,25])
     .padding(0.2);
 
   var tip = d3.tip()
@@ -69,7 +69,7 @@
         //   .alphaTarget(0.25)
         //   .restart()
 
-
+  d3.select('button#theaters').classed('selected',true)
 
   d3.queue()
     .defer(d3.json, "world.topojson")
@@ -96,7 +96,7 @@
 
   var projection = d3.geoMercator()
     .translate([ width / 2.1, height / 2.1])
-    .scale(100);
+    .scale(110);
 
   var path = d3.geoPath()
     .projection(projection);
@@ -137,15 +137,25 @@
       })
       .attr('width',4)
       .attr('height',4)
-      .attr('fill','lightblue')
+      .attr('fill','#FBE251')
       .attr('opacity',0)
       .attr('display','none')
+      .attr('stroke','grey')
+      .attr('stroke-width',3)
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
 
+    var xAxis = d3.axisTop(xPositionScale)
+      .ticks(3);
+
+    var callAxis = svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(60," +  "20)")
+          .call(xAxis)
+          .attr('display','none')
+          .attr('opacity',0);
 
     var country = topojson.feature(jsondata, jsondata.objects.countries).features;
-
 
     var worldmap = svg.selectAll(".country")
         .data(country)
@@ -168,7 +178,7 @@
       .enter().append("circle")
       .attr("class", "city-circle")
       .attr("r", function(d) {
-        return 4
+        return 6
       })
       .attr("fill", "pink")
       .attr("opacity", 0.7)
@@ -196,7 +206,7 @@
       .data(datapoints)
       .enter().append("text")
       .attr("class", "city-name")
-      .attr('x',0)
+      .attr('x',40)
       .attr('y',function(d){
         // console.log(yPositionScale(d.City))
         return yPositionScale(d.City)
@@ -208,6 +218,7 @@
       .attr('dy',"0.75em")
       .attr('display','none')
       .attr('opacity',0)
+      .attr('text-anchor','end')
 
     var circle_name = svg.selectAll(".circle-name")
       .data(datapoints)
@@ -299,6 +310,10 @@
           .style('display','none')
           .style('opacity',0)
 
+        d3.select('.axis')
+          .style('display','none')
+          .style('opacity',0)
+
         // simulation.nodes(datapoints)
         //   .on('tick', function(d){
         //     return null
@@ -308,7 +323,8 @@
           .transition()
             .duration(2000)
             .attr('fill','#FBE251')
-            .attr('stroke','wthie')
+            .attr('stroke','black')
+            .attr('storke-width',0.2)
             .attr('display','inline')
             .attr('opacity',1)
             .attr("cx", function(d) {
@@ -323,79 +339,79 @@
               var coords = projection([d.longitude, d.latitude])
               return coords[1]
             })
-            .attr('r',4)
+            .attr('r',6)
           .transition()
             .delay(0)
             .duration(2000)
             .attr('fill','rgb(255,177,24)')
             .attr('opacity',0)
-            .attr('r',10)
+            .attr('r',15)
           .transition()
             .delay(0)
             .duration(1)
             .attr('fill','#FBE251')
             .attr('opacity',1)
-            .attr('r',4)
+            .attr('r',6)
           .transition()
             .delay(500)
             .duration(2000)
             .attr('fill','rgb(255,177,24)')
             .attr('opacity',0)
-            .attr('r',10)
+            .attr('r',15)
           .transition()
             .delay(0)
             .duration(1)
             .attr('fill','#FBE251')
             .attr('opacity',1)
-            .attr('r',4)
+            .attr('r',6)
           .transition()
             .delay(500)
             .duration(2000)
             .attr('fill','rgb(255,177,24)')
             .attr('opacity',0)
-            .attr('r',10)
+            .attr('r',15)
           .transition()
             .delay(0)
             .duration(1)
             .attr('fill','#FBE251')
             .attr('opacity',1)
-            .attr('r',4)
+            .attr('r',6)
           .transition()
             .delay(500)
             .duration(2000)
             .attr('fill','rgb(255,177,24)')
             .attr('opacity',0)
-            .attr('r',10)
+            .attr('r',15)
           .transition()
             .delay(0)
             .duration(1)
             .attr('fill','#FBE251')
             .attr('opacity',1)
-            .attr('r',4)
+            .attr('r',6)
           .transition()
             .delay(500)
             .duration(2000)
             .attr('fill','rgb(255,177,24)')
             .attr('opacity',0)
-            .attr('r',10)
+            .attr('r',15)
           .transition()
             .delay(0)
             .duration(1)
             .attr('fill','#FBE251')
             .attr('opacity',1)
-            .attr('r',4)
+            .attr('r',6)
           .transition()
             .delay(500)
             .duration(2000)
             .attr('fill','rgb(255,177,24)')
             .attr('opacity',0)
-            .attr('r',10)
+            .attr('r',15)
           .transition()
             .delay(0)
             .duration(1)
             .attr('fill','#FBE251')
-            .attr('opacity',1)
-            .attr('r',4)
+            .attr('opacity',0.7)
+            .attr('r',6)
 
         city_name
           .transition()
@@ -417,7 +433,6 @@
             })
             .attr('width',4)
             .attr('height',4)
-            .attr('fill','lightblue')
             .attr('opacity',0)
           .transition()
             .duration(1000)
@@ -453,6 +468,11 @@
           .style('display','none')
           .style('opacity',0)
 
+        d3.select('.axis')
+          .style('display','block')
+          .style('opacity',1)
+
+
         // simulation.nodes(datapoints)
         //   .on('tick', function(d){
         //     return null
@@ -475,12 +495,17 @@
           .attr('opacity',0)
 
         xPositionScale.domain(selectExt)
-        
+
+        var sorted = datapoints.sort(function
+            (a, b) { return a[selected] - b[selected] }).map( 
+            function(d) { return d.City })
+        yPositionScale.domain(sorted)
+ 
         city_bars
           .transition()
           .duration(1000)
           .attr("x", function(d) { 
-            return 100 
+            return 60 
           })
           .attr("y", function(d) { 
             return yPositionScale(d.City); 
@@ -493,9 +518,13 @@
             // console.log(yPositionScale.bandwidth())
             return yPositionScale.bandwidth()
           })
-          .attr('opacity',1)
+          .attr('opacity',0.7)
           .attr('display','inline')
 
+        xAxis = d3.axisTop(xPositionScale)
+                  .ticks(3)
+        callAxis
+          .call(xAxis)
 
         city_name
           .transition()
@@ -537,6 +566,10 @@
           .style('display','none')
           .style('opacity',0)
 
+        d3.select('.axis')
+          .style('display','none')
+          .style('opacity',0)
+
           city_name
             .transition()
               .duration(1000)
@@ -557,7 +590,6 @@
               })
               .attr('width',4)
               .attr('height',4)
-              .attr('fill','lightblue')
               .attr('opacity',0)
             .transition()
               .duration(1000)
@@ -571,6 +603,7 @@
             })
             .attr('opacity',1)
             .attr('display',"inline")
+            .attr('stroke-width',5)
 
           cities
             .on('click',function(d){
@@ -749,6 +782,9 @@
         .on('click',function(d){
           console.log(this.id)
 
+          d3.selectAll('button').classed('selected',false)
+          d3.select(this).classed('selected',true)
+
           selected = this.id
 
           console.log(selected)
@@ -757,6 +793,7 @@
             (a, b) { return a[selected] - b[selected] }).map( 
             function(d) { return d.City })
 
+          console.log(sorted)
 
           selectExt = d3.extent(datapoints,function(d){
             return d[selected]
@@ -768,6 +805,14 @@
 
           yPositionScale.domain(sorted)
 
+          xAxis = d3.axisTop(xPositionScale)
+                  .ticks(3)
+
+          callAxis
+            .transition()
+            .duration(1000)
+            .call(xAxis)
+
           city_bars
             .transition()
             .duration(1000)
@@ -777,6 +822,7 @@
             .attr("y", function(d) { 
               return yPositionScale(d.City); 
             })
+
 
           city_name
             .transition()

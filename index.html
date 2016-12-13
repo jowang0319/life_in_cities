@@ -6,138 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Source+Sans+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="custom.css">
 
-    <!-- Demo styles -->
     <style>
-    html, body {
-        position: relative;
-        height: 100%;
-    }
-    body {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        color:#000;
-        margin: 0;
-        padding: 0;
-    }
-    .swiper-container {
-        width: 20%;
-        padding-rigth: 0%;
-        float:right;
-        position: relative;
-        height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        z-index: 2;
-    }
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
-
-    .d3-tip { z-index: 100; }
-
-    button{
-        
-    }
-
-    #graphic {
-        position: absolute;
-        top: 0;
-        z-index: 2;
-        left: 22%;
-
-    }
-
-/*    #graphic svg {
-        background: #f1f1f1;
-    }*/
-
-    #Antarctica{
-        display:none;
-    }
-
-    #graphic{
-        width:800px;
-    }
-
-    h1#title{
-        font-family: 'Lobster Two', cursive;
-        font-size: 7vh;
-        text-align: center;
-        margin-top:35%;
-    }
-
-    p#source{
-        font-family: 'Source Sans Pro', sans-serif;
-        font-size: 2vh;
-        text-align: center;
-        margin-top: -4%;
-    }
-
-    p#intro{
-        display:none;
-    }
-
-    p#bar_text{
-        display:none;
-    }
-
-    p#circle_text{
-        display:none;
-    }
-
-    img#start_img{
-        width:100%;
-        z-index: 99;
-        bottom: 0%;
-        position:absolute;
-    }
-
-    div#cover{
-        width:100%;
-        z-index: 100;
-        bottom: 0%;
-        position:absolute;
-        height:300px;
-        background-color: white;
-    }
-
-    div#city_detail{
-        width:800px;
-        position: absolute;
-        top: 1300px;
-        z-index: 2;
-        left: 22%;
-    }
-
-    p#buttons{
-        display:none;
-    }
-
-
     </style>
 </head>
 <body>
-    <!-- Swiper -->
+
     <img id='start_img' src='city.png'>
     <div id='cover'></div>
 
@@ -153,27 +33,27 @@
 
         <p id='source'>Author <a href='http://zhizhouwang.me'>Zhizhou Wang </a>| Data <a href = 'http://www.worldcitiescultureforum.com/'>World cities culture forum </a></p>
 
-        <p id = 'intro'>Culture, the complex whole which includes knowledge, belief, art, morals, law, custom and any other capabilities and habits acquired by man as a member of society, serves as the spirit of human existance.
+        <p id = 'intro'><span class='firstword'>Culture</span>, the complex whole which includes knowledge, belief, art, morals, law, custom and any other capabilities and habits acquired by man as a member of society, serves as the spirit of human existance.
         </br>
         Groups of people generate the culture of a city, and then the culture itself becomes a kind of symbol that different that city from others.
         </br>
-        From Tokyo to New York, large cities is the house for millions of people from different background, countries, and history. The world cities culture forum collected data of 33 cities around the world and the cultural life within those cities, allowing us to understand better about those large cities in a distinct perspect.
+        From Tokyo to New York, large cities are houses for millions of people from different background, countries, and history. The <a href='http://www.worldcitiescultureforum.com/'>World Cities Culture Forum</a> collected data of 33 cities around the world and the cultural life within those cities, allowing us to have a better understanding of those large cities in a distinct perspect.
         </br>
-        Let's have a look of the data and see Which city is best for you?
+        Let's have a look of the data and see which city is best for you?
         </p>
 
         <p id='bar_text'>
-            The research collected the data of the cultural life in large cities, including infrastructures such as restaurants, cinemas, clubs, as well as welcomeness of international students and percentage of foreign born.
+            <span class='firstword'>The</span> research collected the data of the cultural life in large cities, including infrastructures such as restaurants, cinemas, clubs, as well as welcomeness of international students and percentage of foreign born.
             Click on the button bellow to see the comparison between cities in corresponding area. 
         </p>
 
         <p id='circle_text'>
-            Population varies as well in these large cities, hover on the circles below to explore the city in detail.
+            <span class='firstword'>Cities</span> vary a lot in different cultural aspects. Are you interested in any of the mentioned cities? Click on the bubbles below and <a href='#city_detail'>scroll down</a> to next page to explore more details of them or visit the <a href='http://www.worldcitiescultureforum.com/'>link</a> to get more information about the forum.
         </p>
 
         <p id='buttons'>
 
-            Leisure Time
+            <span class='button-head'>Leisure Time</span>
             <button id='theaters'>theaters</button>
             <button id='art_galleries'>art galleries</button>
             <button id='concer_hall'>concert halls</button>
@@ -181,40 +61,35 @@
             <button id='cinema'>cinemas</button>
             <br>
 
-            Nightlife
+            <span class='button-head'>Nightlife</span>
             <button id='bar'>bars</button>
             <button id='club_disco'>clubs and discos</button>
             <button id='michelin_rest'>michelin restaurants</button>
             <br>
             
-            Interests
+            <span class='button-head'>Interests</span>
             <button id='cinAd_perc'>cinema admission per capita</button>
             <button id='film_fes'>film festivals</button>
             <button id='dance_performance'>dance performance</button>
             <br>
 
-            Global
+            <span class='button-head'>Global</span>
             <button id='inter_student'>international students</button>
             <button id='foreign_born'>foreign born percentage</button>
             <button id='inter_tourists'>international tourists per year</button>
                 
-            
-
         </p>
 
     </div>
 
-
-
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" id="slide-1">Slide 1</div>
-            <div class="swiper-slide" id="slide-2">Slide 2</div>
-            <div class="swiper-slide" id="slide-3">Slide 3
-
-            </div>
-            <div class="swiper-slide" id="slide-4">Slide 4</div>
-
+            <div class="swiper-slide" id="slide-1">
+                <img id='paper' src='paper.png'>
+                </div>
+            <div class="swiper-slide" id="slide-2"><img id='paper' src='paper.png'></div>
+            <div class="swiper-slide" id="slide-3"><img id='paper' src='paper.png'></div>
+            <div class="swiper-slide" id="slide-4"></div>
 
         </div>
         <!-- Add Pagination -->
@@ -222,6 +97,7 @@
         
     </div>
 
+    <div class="row">
     <div id='city_detail'>
         <h2 class='selected_name'>Select a circle above and slide down to explore more details</h2>
         <p>Area size: <span class='area_size'></span> sq/km
@@ -231,7 +107,11 @@
             GDP: $<span class='gdp'></span> million
         </p>
 
-        <h4>Infrastructure</h4>
+        <div class="row">
+        <div class='col-md-4'>
+            <img src='green.png' class='left_img'>
+        <h4>Infrastructure</h4></div>
+        <div class='col-md-6'>
         <p>
             Green area percentage: <span class='green'></span>
             </br>
@@ -243,8 +123,14 @@
             </br>
             national museums: <span class='nm'></span> 
         </p>
+        </div>
+        </div>
 
-        <h4>Entertaining</h4>
+        <div class="row">
+        <div class='col-md-4'>
+            <img src='enter.png' class='left_img'>
+        <h4>Entertaining</h4></div>
+        <div class='col-md-6'>
         <p>
             art galleries: <span class='ag'></span> 
             </br>
@@ -262,8 +148,14 @@
             </br>
             theaters: <span class='theater'></span> 
         </p>
+        </div>
+        </div>
 
-        <h4>Globalization</h4>
+        <div class="row">
+        <div class='col-md-4'>
+            <img src='global.png' class='left_img'>
+        <h4>Globalization</h4></div>
+        <div class='col-md-6'>
         <p>
             foreign born percentage: <span class='fb'></span> 
             </br>
@@ -271,8 +163,14 @@
             </br>
             international students: <span class='is'></span> 
         </p>
+        </div>
+        </div>
 
-        <h4>Celebration and festivals</h4>
+        <div class="row">
+        <div class='col-md-4'>
+            <img src='fest.png' class='left_img'>
+        <h4>Celebration and festivals</h4></div>
+        <div class='col-md-6'>
         <p>
             film festival: <span class='ff'></span> 
             </br>
@@ -282,8 +180,14 @@
             </br>
             dance performance: <span class='dp'></span> 
         </p>
+        </div>
+        </div>
 
-        <h4>Others</h4>
+        <div class="row">
+        <div class='col-md-4'>
+            <img src='others.png' class='left_img'>
+        <h4>Others</h4></div>
+        <div class='col-md-6'>
         <p>
             population in city percentage: <span class='pic'></span> %
             </br>
@@ -298,15 +202,23 @@
             attendance of carnival: <span class='aoc'></span> 
 
         </p>
+        </div>
+        </div>
+
+    <div class='break'>
+        <hr id='divider'></hr>
+        <p id='end'>Copyright &copy; Zhizhou Wang </p>
+    </div>
+
+    </div>
+
 
 
 
     </div>
 
-    <!-- Swiper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/js/swiper.min.js"></script>
 
-    <!-- Initialize Swiper -->
     <script>
 
     // If we've moved to a new slide, fire to 'slideto' event
@@ -336,7 +248,6 @@
         mousewheelControl: true
     });
 
-
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
@@ -349,8 +260,6 @@
     <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
 
     <script src="graph.js"></script>
-
-
 
 </body>
 </html>

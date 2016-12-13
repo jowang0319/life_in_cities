@@ -1,0 +1,138 @@
+#graphic {
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        left: 22%;
+        width:800px;
+        margin-top: 0%;
+}
+
+svg{
+	margin-top: 3%;
+}
+
+#Antarctica{
+        display:none;
+}
+
+h1#title{
+        margin-top:33%;
+}
+
+p#source{
+        text-align: center;
+        margin-top: 0%;
+        font-size: 2vh;
+}
+
+p#intro{
+        display:none;
+        margin-top: 0%;
+}
+
+
+p#bar_text{
+        display:none;
+        margin-top: 0%;
+}
+
+.axis path {
+  stroke: grey;
+  stroke-width:2px;
+}
+
+.tick line{
+	stroke: grey;
+}
+
+span.button-head{
+	font-size: 2.8vh;
+	font-family: 'Lobster Two', cursive;
+	color:grey;
+}
+
+p#circle_text{
+        display:none;
+        margin-top: 0%;
+}
+
+img#start_img{
+        width:100%;
+        z-index: 99;
+        bottom: 10%;
+        position:absolute;
+}
+
+div#cover{
+        width:100%;
+        z-index: 100;
+        bottom: 10%;
+        position:absolute;
+        height:300px;
+        background-color: white;
+}
+
+div#city_detail{
+        width:800px;
+        position: absolute;
+        top: 110%;
+        z-index: 2;
+        left: 22%;
+    }
+
+p#buttons{
+        display:none;
+    }
+
+text.city-name{
+	font-size:1.8vh;
+}
+
+span.firstword{
+	font-size: 5vh;
+	font-family: 'Lobster Two', cursive;
+	margin-right: 4px;
+	margin-top: 5px;
+}
+
+div.left{
+	margin-top: 3%;
+	float:left;
+	width:30%;
+}
+
+
+img.left_img{
+	width:60%;
+}
+
+div.row{
+	margin-top: 3%;
+}
+
+div.break{
+        width:60%;
+        margin-top: 5vh;
+        margin-left: 20%;
+        opacity:0.5;
+    }
+
+p#end{
+        text-align: center;
+        margin-top: -3%;
+        color:rgba(100,100,100,1.0);
+        font-size: 1.5vh;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+img#paper{
+	width:50%;
+	margin-top: -100%;
+	z-index:100;
+	float: left;
+}
+
+p#instruction{
+	float:left;
+	display:block;
+}
